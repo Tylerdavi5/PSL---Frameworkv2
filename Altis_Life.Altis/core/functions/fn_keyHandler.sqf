@@ -115,8 +115,6 @@ switch (_code) do {
         if (_shift) then {
             if (player getVariable ["playerSurrender",false]) then {
                 player setVariable ["playerSurrender",false,true];
-            } else {
-                [] spawn life_fnc_surrender;
             };
             _handled = true;
         };
@@ -151,9 +149,6 @@ switch (_code) do {
     //Restraining (Shift + R)
     case 19: {
         if (_shift) then {_handled = true};
-        if (_shift && playerSide isEqualTo west && {!isNull cursorObject} && {cursorObject isKindOf "CAManBase"} && {(isPlayer cursorObject)} && {(side cursorObject in [civilian,independent])} && {alive cursorObject} && {cursorObject distance player < 3.5} && {!(cursorObject getVariable "Escorting")} && {!(cursorObject getVariable "restrained")} && {speed cursorObject < 1}) then {
-            [] call life_fnc_restrainAction;
-        };
     };
 
     //Knock out, this is experimental and yeah... (Shift + G)
@@ -217,7 +212,7 @@ switch (_code) do {
     //Y Player Menu
     case 21: {
         if (!_alt && !_ctrlKey && !dialog && !(player getVariable ["restrained",false]) && {!life_action_inUse}) then {
-            [] call life_fnc_p_openMenu;
+            [1] spawn the_programmer_iphone_xi_fnc_phone_init;
         };
     };
 

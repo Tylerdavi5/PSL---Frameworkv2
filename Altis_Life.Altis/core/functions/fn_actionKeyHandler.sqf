@@ -14,7 +14,7 @@ if (life_interrupted) exitWith {life_interrupted = false;};
 _isWater = surfaceIsWater (visiblePositionASL player);
 
 if (playerSide isEqualTo west && {player getVariable ["isEscorting",false]}) exitWith {
-    [] call life_fnc_copInteractionMenu;
+    ["cop_interaction"] spawn CBX_fnc_openInteraction;
 };
 
 if (LIFE_SETTINGS(getNumber,"global_ATM") isEqualTo 1) then{
@@ -67,7 +67,11 @@ private _tanoaArray = [11074.2,11501.5,0.00137329];
 private _pos = [[["Altis", _altisArray], ["Tanoa", _tanoaArray]]] call TON_fnc_terrainSort;
 
 if (_curObject isKindOf "House_F" && {player distance _curObject < 12} || ((nearestObject [_pos,"Land_Dome_Big_F"]) isEqualTo _curObject || (nearestObject [_pos,_vaultHouse]) isEqualTo _curObject)) exitWith {
-    [_curObject] call life_fnc_houseMenu;
+    switch (side player) do {
+        case civilian: {["house_menu"] spawn CBX_fnc_openInteraction;};
+        case west: {["cop_house_menu"] spawn CBX_fnc_openInteraction;};
+        default {};
+    };
 };
 
 if (dialog) exitWith {}; //Don't bother when a dialog is open.
@@ -93,7 +97,7 @@ if (_curObject isKindOf "CAManBase" && {!alive _curObject}) exitWith {
 //If target is a player then check if we can use the cop menu.
 if (isPlayer _curObject && _curObject isKindOf "CAManBase") then {
     if ((_curObject getVariable ["restrained",false]) && !dialog && playerSide isEqualTo west) then {
-        [_curObject] call life_fnc_copInteractionMenu;
+        ["cop_interaction"] spawn CBX_fnc_openInteraction;
     };
 } else {
     //OK, it wasn't a player so what is it?
@@ -107,7 +111,7 @@ if (isPlayer _curObject && _curObject isKindOf "CAManBase") then {
     if (_isVehicle) then {
         if (!dialog) then {
             if (player distance _curObject < ((boundingBox _curObject select 1) select 0)+2 && (!(player getVariable ["restrained",false])) && (!(player getVariable ["playerSurrender",false])) && !life_isknocked && !life_istazed) then {
-                [_curObject] call life_fnc_vInteractionMenu;
+                ['vehicle_menu'] spawn CBX_fnc_openInteraction;
             };
         };
     } else {

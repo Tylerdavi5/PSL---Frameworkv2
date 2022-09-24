@@ -8,6 +8,14 @@
 */
 private ["_units","_type"];
 
+private _atmClassnames = getArray (missionConfigFile >> "The_Programmer_RobAtm_Config" >> "atm_all_classnames");
+if !((typeOf cursorObject) in _atmClassnames) exitWith {};
+
+if (cursorObject getVariable ["TP_robAtm_robbed", false] || ((cursorObject getvariable ["TP_robAtm_fakeCard", ""]) != "")) exitWith {
+    [cursorObject] call the_programmer_robatm_tpfn_autoFixAtm;
+};
+
+
 if (!life_use_atm) exitWith {
     hint format [localize "STR_Shop_ATMRobbed",(LIFE_SETTINGS(getNumber,"noatm_timer"))];
 };

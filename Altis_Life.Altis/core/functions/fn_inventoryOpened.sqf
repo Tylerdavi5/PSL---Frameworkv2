@@ -12,6 +12,8 @@ params [
     ["_secContainer", objNull, [objNull]]
 ];
 
+if (player getVariable "restrained") exitWith {true;};
+
 scopeName "main";
 private _list = ["LandVehicle", "Ship", "Air"];
 

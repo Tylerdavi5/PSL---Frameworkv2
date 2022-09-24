@@ -27,7 +27,7 @@ class VirtualShops {
         name = "STR_Shops_Rebel";
         side = "civ";
         conditions = "license_civ_rebel";
-        items[] = { "waterBottle", "rabbit", "apple", "redgull", "tbacon", "lockpick", "pickaxe", "toolkit", "fuelFull", "peach", "boltcutter", "blastingcharge" };
+        items[] = { "waterBottle", "rabbit", "apple", "redgull", "tbacon", "lockpick", "pickaxe", "toolkit", "fuelFull", "peach", "boltcutter", "blastingcharge", "tp_fakeCard" };
     };
 
     class gang {
@@ -919,5 +919,17 @@ class VirtualItems {
         edible = 100;
         drinkable = -1;
         icon = "icons\ico_muttonLeg.paa";
+    };
+
+    class tp_fakeCard{
+        variable = "tp_fakeCard";
+        displayName = "STR_tp_robAtm";
+        weight = 3;
+        buyPrice = 5000;
+        sellPrice = -1;
+        illegal = true;
+        edible = -1;
+        drinkable = -1;
+        icon = "The-Programmer\RobATM\icons\card.paa";
     };
 };

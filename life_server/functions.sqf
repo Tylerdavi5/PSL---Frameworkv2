@@ -245,6 +245,8 @@ compileFinal "
     _msg = _this select 0;
     _from = _this select 1;
     _type = _this select 2;
+    if ((_type != 2) && (_type != 3) && (_type != 4) && (profileNamespace getVariable [""TP_IphoneXI_PlaneMode"",false])) exitWith {};
+
     if (_from isEqualTo """") exitWith {};
     switch (_type) do {
         case 0 : {
