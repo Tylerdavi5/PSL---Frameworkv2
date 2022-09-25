@@ -13,7 +13,7 @@ _player say3D "akbar";
 sleep 8;
 
 
-if(vest player != "V_HarnessOGL_gry") exitWith {life_isSuiciding = false;};
+if(vest player != "Vest_V_Chestrig_oil") exitWith {life_isSuiciding = false;};
 if((player getVariable "restrained")) exitWith {life_isSuiciding = false;}; //He's restrained.
 if((player getVariable "zipted")) exitWith {life_isSuiciding = false;}; //He's restrained.
 
